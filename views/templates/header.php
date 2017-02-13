@@ -6,10 +6,10 @@
         <title>School Stark</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../assets/css/pure.css" rel="stylesheet">
-        <link href="../assets/css/main.css" rel="stylesheet">
+        <link href="/views/assets/css/pure.css" rel="stylesheet">
+        <link href="/views/assets/css/main.css" rel="stylesheet">
         
-        <script src="../assets/js/pure.js"></script>
+        <script src="/views/assets/js/pure.js"></script>
     </head>
     <body>
 
