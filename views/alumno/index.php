@@ -3,15 +3,15 @@
 <div class="body" >   
 
 <?php 
-    switch ($_REQUEST['page']) {
-        case 'value':
-            # code...
-            break;
-        
-        default:
-            # code...
-            break;
-    }
+switch ($_REQUEST['page']) {
+    case 'value':
+        # code...
+        break;
+    
+    default:
+        # code...
+        break;
+}
 
  ?>
 
