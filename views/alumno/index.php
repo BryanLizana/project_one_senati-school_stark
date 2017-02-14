@@ -4,12 +4,15 @@
 
 <?php 
 switch ($_REQUEST['page']) {
-    case 'value':
-        # code...
+    case 'list-bloque':
+        include_once('list-bloque.php');
         break;
-    
+    case 'list-curso':
+         include_once('list-curso.php');
+        break;
+        
     default:
-        # code...
+        include_once('detail.php');
         break;
 }
 

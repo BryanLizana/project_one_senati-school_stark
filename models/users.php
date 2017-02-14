@@ -84,9 +84,17 @@ class Users
         // $this->password;
 
         if (!empty( $this->code)  && !empty( $this->password)) {
-          $db->prepare("select");
+          $db->prepare("select * from users where code = :code and password=:password ");
+          $db->execute(array(':code' => $this->code,':password'=> $this->password ));
+          $db;
+
         }
        
+    }
+
+    public function list_nav()
+    {
+        
     }
 
 }
