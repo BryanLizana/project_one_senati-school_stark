@@ -29,6 +29,14 @@ class DB
     {
             return $this->db;
     }
+
+    public function query($sql_prepare,$array_data = null)
+    {
+        $prepare =    $db->prepare($sql_prepare);
+        $prepare->execute($array_data);
+        $datalist =   $prepare->fetchAll();
+        return $datalist;
+    }
 }
 
 

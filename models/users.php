@@ -99,7 +99,8 @@ class Users
 
     public function list_nav()
     {
-        
+        global $db;
+        $db->query("SELECT * FROM ");
     }
 
 }
