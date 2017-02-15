@@ -1,5 +1,6 @@
 <?php require_once('../../models/conexion.php'); ?>
-
+<?php require_once('../../controllers/functions.php') ?>
+<?php //valid_login(); ?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -15,8 +16,11 @@
 
 <body>
     <div id="layout">
+    <div>
         <?php require_once('../templates/nav.php') ?>
-
-
-
     </div>
+
+    <div style="height: 150px;">
+        
+    </div>
+<hr>
