@@ -19,3 +19,9 @@ function up_to_session_user($usuario = 0)
    }
 
 }
+
+function valid_permisos()
+{
+    echo '<pre>'; var_dump( $_REQUEST ); echo '</pre>';die;
+
+}

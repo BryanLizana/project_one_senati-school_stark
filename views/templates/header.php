@@ -2,6 +2,7 @@
 <?php require_once('../../models/conexion.php'); ?>
 <?php require_once('../../controllers/functions.php') ?>
 <?php valid_login(); ?>
+<?php valid_permisos(); ?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
