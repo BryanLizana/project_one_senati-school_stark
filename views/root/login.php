@@ -1,10 +1,10 @@
-<?php  if($_SERVER['REQUEST_METHOD'] == 'POST'):  ?>
+<?php if($_SERVER['REQUEST_METHOD'] == 'POST'):  ?>
   <?php  if( isset($_REQUEST['code']) &&  !empty($_REQUEST['code']) &&  isset($_REQUEST['password']) &&  !empty($_REQUEST['password']) ):  ?>
         <?php 
-            include_once('../../controllers/usersController.php');
+            include_once('../../models/users.php');
             require_once('../../controllers/functions.php');
             
-            $user =  new UserController();
+            $user =  new Users();
             $user->code = $_REQUEST['code'];
             $user->password = $_REQUEST['password'];
             

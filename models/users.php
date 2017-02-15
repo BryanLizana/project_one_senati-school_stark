@@ -1,5 +1,5 @@
 <?php 
-require_once('/conexion.php');
+require_once('conexion.php');
 
 /**
  * 
@@ -82,12 +82,17 @@ class Users
     {
         // $this->code;
         // $this->password;
-
+        global $db;
         if (!empty( $this->code)  && !empty( $this->password)) {
-          $db->prepare("select * from users where code = :code and password=:password ");
-          $db->execute(array(':code' => $this->code,':password'=> $this->password ));
-          $db;
+            $prepare =    $db->prepare("select * from users where code = :code and password=:password ");
+            $prepare->execute(array(':code' => $this->code,':password'=> $this->password ));
+            $data_user =   $prepare->fetch();
 
+            if (isset($data_user['code'])) {
+                return $data_user;                
+            }else {
+                return null;
+            }
         }
        
     }
