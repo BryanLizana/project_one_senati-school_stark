@@ -32,7 +32,8 @@ class DB
 
     public function query($sql_prepare,$array_data = null)
     {
-        $prepare =    $db->prepare($sql_prepare);
+
+        $prepare =    $this->db->prepare($sql_prepare);
         $prepare->execute($array_data);
         $datalist =   $prepare->fetchAll();
         return $datalist;
@@ -40,6 +41,6 @@ class DB
 }
 
 
-$class_db = new DB();
-$db = $class_db->db();
+$db_class = new DB();
+$db = $db_class->db();
 

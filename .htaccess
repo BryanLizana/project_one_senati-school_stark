@@ -10,22 +10,22 @@
 	RewriteRule    ^dashboard/?$    dashboard.php    [NC,L]
 
     ##docente
-	RewriteRule ^alumno/$ views/alumno/index.php?page=detail&page_base=alumno [L,QSA]	
-	RewriteRule ^alumno/([^/\.]+)/$ views/alumno/index.php?page=$1&page_base=alumno [L,QSA]
-	RewriteRule ^alumno/([^/\.]+)/([^/\.]+)/$ views/alumno/index.php?page=$1&id=$2&page_base=alumno [L,QSA]
+	RewriteRule ^alumno/$ views/alumno/index.php?page=detail [L,QSA]	
+	RewriteRule ^alumno/([^/\.]+)/$ views/alumno/index.php?page=$1 [L,QSA]
+	RewriteRule ^alumno/([^/\.]+)/([^/\.]+)/$ views/alumno/index.php?page=$1&id=$2 [L,QSA]
     
-	RewriteRule ^docente/$ views/docente/index.php?page=detail&page_base=docente [L,QSA]		
-	RewriteRule ^docente/([^/\.]+)/$ views/docente/index.php?page=$1&page_base=docente [L,QSA]
-	RewriteRule ^docente/([^/\.]+)/([^/\.]+)/$ views/docente/index.php?page=$1&id=$2&page_base=docente [L,QSA]
+	RewriteRule ^docente/$ views/docente/index.php?page=detail [L,QSA]		
+	RewriteRule ^docente/([^/\.]+)/$ views/docente/index.php?page=$1 [L,QSA]
+	RewriteRule ^docente/([^/\.]+)/([^/\.]+)/$ views/docente/index.php?page=$1&id=$2 [L,QSA]
 
-	RewriteRule ^admin/$ views/admin/index.php?page=detail&page_base=admin [L,QSA]	
-	RewriteRule ^admin/([^/\.]+)/$ views/admin/index.php?page=$1&page_base=admin [L,QSA]
-	RewriteRule ^admin/([^/\.]+)/([^/\.]+)/$ views/admin/index.php?page=$1&id=$2&page_base=admin [L,QSA]
+	RewriteRule ^admin/$ views/admin/index.php?page=detail [L,QSA]	
+	RewriteRule ^admin/([^/\.]+)/$ views/admin/index.php?page=$1 [L,QSA]
+	RewriteRule ^admin/([^/\.]+)/([^/\.]+)/$ views/admin/index.php?page=$1&id=$2 [L,QSA]
 
 
-	RewriteRule ^root/$ views/root/index.php?page=detail&page_base=admin [L,QSA]	
-	RewriteRule ^root/([^/\.]+)/$ views/root/index.php?page=$1&page_base=admin [L,QSA]
-	RewriteRule ^root/([^/\.]+)/([^/\.]+)/$ views/root/index.php?page=$1&id=$2&page_base=admin [L,QSA]
+	RewriteRule ^root/$ views/root/index.php?page=detail [L,QSA]	
+	RewriteRule ^root/([^/\.]+)/$ views/root/index.php?page=$1 [L,QSA]
+	RewriteRule ^root/([^/\.]+)/([^/\.]+)/$ views/root/index.php?page=$1&id=$2 [L,QSA]
 
 
 </IfModule>

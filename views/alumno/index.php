@@ -1,3 +1,4 @@
+<?php $page_this = "ALUMNO"; ?>
 <?php require_once('../templates/header.php'); ?>
 <!--content-->
 <div class="body" >   

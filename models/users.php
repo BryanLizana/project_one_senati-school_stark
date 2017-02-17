@@ -84,7 +84,7 @@ class Users
         // $this->password;
         global $db;
         if (!empty( $this->code)  && !empty( $this->password)) {
-            $prepare =    $db->prepare("select * from users where code = :code and password=:password ");
+            $prepare =    $db->prepare("select * from users where code = :code and password=:password and status = 'ACTIVO'");
             $prepare->execute(array(':code' => $this->code,':password'=> $this->password ));
             $data_user =   $prepare->fetch();
 
@@ -99,8 +99,11 @@ class Users
 
     public function list_nav()
     {
-        global $db;
-        $db->query("SELECT * FROM ");
+        global $db_class;
+        $data = array(':type_us' => $this->type_us );
+       $data_list =  $db_class->query("SELECT name,code_menu FROM menu where type_us = :type_us",$data);
+        unset($data);
+       return $data_list;
     }
 
 }
