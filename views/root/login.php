@@ -11,6 +11,7 @@
            $usuario =  $user->login();
             if (isset($usuario)) {
              up_to_session_user($usuario);
+             header('location:/'.strtolower($_SESSION['user']['type_us']).'/');
             }else {
             $error_n = "Usuario o password incorrectos";
             }

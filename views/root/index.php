@@ -1,3 +1,4 @@
+<?php $page_this = "ROOT"; ?>
 <?php require_once('../templates/header.php'); ?>
 <!--content-->
 <div class="body" >   
@@ -10,7 +11,6 @@ switch ($_REQUEST['page']) {
     case 'edit-user':
          include_once('edit-user.php');
         break;
-        
     default:
         include_once('detail.php');
         break;

@@ -15,13 +15,18 @@ function up_to_session_user($usuario = 0)
    if (isset($usuario['type_us']) ) {       
        $_SESSION['user']['code'] = $usuario['code'];
        $_SESSION['user']['name'] = $usuario['name'];
+       $_SESSION['user']['last_name'] = $usuario['last_name'];
+       $_SESSION['user']['email'] = $usuario['email'];
+       $_SESSION['user']['phone'] = $usuario['phone'];
+       $_SESSION['user']['type_us'] = $usuario['type_us'];
        
    }
 
 }
 
-function valid_permisos()
+function valid_permisos($page)
 {
-    echo '<pre>'; var_dump( $_REQUEST ); echo '</pre>';die;
-
+    if ($_SESSION['user']['type_us'] !== $page && $_SESSION['user']['type_us'] !== "ROOT" ) {
+         header('location:/'.strtolower($_SESSION['user']['type_us']).'/');
+    }
 }
