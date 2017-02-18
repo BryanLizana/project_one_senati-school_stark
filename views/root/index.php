@@ -1,4 +1,5 @@
 <?php $page_this = "ROOT"; ?>
+<?php  require_once('../../models/users.php'); ?>
 <?php require_once('../templates/header.php'); ?>
 <!--content-->
 <div class="body" >   

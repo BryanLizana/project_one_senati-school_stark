@@ -30,3 +30,13 @@ function valid_permisos($page)
          header('location:/'.strtolower($_SESSION['user']['type_us']).'/');
     }
 }
+
+// function mi_echo($value_to_print)
+// {
+
+//     $r = (!isset($data[$value_to_print]) ||  empty($data[$value_to_print])) ? '' : $data[$value_to_print] ;
+
+//     echo  $r;
+//     // return $r
+//     // die;
+// }

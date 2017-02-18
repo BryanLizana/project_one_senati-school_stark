@@ -30,12 +30,29 @@ class DB
             return $this->db;
     }
 
-    public function query($sql_prepare,$array_data = null)
+    public function query($sql_prepare,$array_data = null,$type = "ALL")
     {
-
+        //try catch
+        //**¡¡
+       
         $prepare =    $this->db->prepare($sql_prepare);
         $prepare->execute($array_data);
-        $datalist =   $prepare->fetchAll();
+        //Dependiendo del tipo de la consulta devolver un tipo de resultado en específico
+        //ALL : Lista completa o datos de un solo usuario
+        //INSERT|UPDATE El Id que se ha ingresado o actualizado
+       switch ($type) {
+           case 'ALL':
+                $datalist =   $prepare->fetchAll();
+               break;
+           case 'INSERT':
+           case 'UPDATE':
+                $datalist =  $this->db->lastInsertId();
+               break;       
+           default:
+              $datalist =   $prepare->fetch();
+               break;
+       }
+   
         return $datalist;
     }
 }

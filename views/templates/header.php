@@ -1,5 +1,4 @@
 <?php session_start(); ?>
-<?php require_once('../../models/users.php'); ?>
 <?php require_once('../../controllers/functions.php') ?>
 <?php valid_login(); ?>
 <?php valid_permisos($page_this); ?>
