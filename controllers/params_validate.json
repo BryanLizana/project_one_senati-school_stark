@@ -1,14 +1,16 @@
 {
-    "id_user": "onlynumber",
-    "name": "onlyletter|require,users|length,30",
-    "last_name": "onlyletter|require,users|length,30",
-    "code": "int|require,users|length,10",
-    "phone": "int",
-    "email": "email|unique,users",
-    "password": "require,users",
-    "type_us": "only,ALUMNO,ROOT,ADMIN,DOCENTE",
+    ":id_user": "onlynumber",
+    ":name": "onlyletter|require,users|length,30",
+    ":last_name": "onlyletter|require,users|length,30",
+    ":code": "onlynumber|require,users|length,10|unique,users",    
+    ":phone": "onlynumber",
+    ":email": "email|unique,users",
+    ":password": "require,users",
+    ":type_us": "only,ALUMNO,ROOT,ADMIN,DOCENTE",
+    ":bloques_code": "require,bloques|length,10|unique,bloques",
+    ":cursos_name": "require,cursos|length,50|unique,cursos",
     
     "nothing": "",
-    "Documentacion": "Aqui estan los parametros que se usaran en el sistema, se declaran segun su nombre, ya se el de la base de datos o el que necesites. Luego se declara las condiciones separadas por ' |  '  el typo, en caso que sea requerido se debe especificar cuando será requerido para ello la class validate cuenta con el atributo '$table'  que debe ir luego de 'require' separado porcoma. Para valores específico está only y despues de una coma los valores permitios, tambien separados por coma . Tener en cuenta que poner unique será para verificar si el valor existe por ello se especifica la tabla y estar conectado a la base de datos(la tabla despues de una coma) "    
+    "Documentacion": "Aqui estan los parametros que se usaran en el sistema, se declaran segun su nombre, ya se el de la base de datos o el que necesites. Luego se declara las condiciones separadas por ' | '  el typo, en caso que sea requerido se debe especificar cuando será requerido para ello la class validate cuenta con el atributo '$table'  que debe ir luego de 'require' separado porcoma. Para valores específico está only y despues de una coma los valores permitios, tambien separados por coma . Tener en cuenta que poner unique será para verificar si el valor existe por ello se especifica la tabla y estar conectado a la base de datos(la tabla despues de una coma) "    
     
 }

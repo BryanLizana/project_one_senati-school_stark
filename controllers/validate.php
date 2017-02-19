@@ -8,6 +8,8 @@ class Validate
     public $require;
     public $table;
     private $message_error_alternative = null;
+    public $type_sql = null;
+    
     
     
     function __construct()
@@ -32,11 +34,10 @@ class Validate
                             unset($condition_explode[0]);
                             if ($this->table == $condition_explode[1]) {
                                 $this->message_error_alternative = "EL campo ".$key." es requerido";
-                                $r = self::if_validate( isset($this->data[$key ]) ,$key); 
+                                $r = self::if_validate( isset($this->data[$key]) && !empty($this->data[$key]) ,$key); 
                                 if ($r !== 1) {
                                     return $r;
                                 }
-
                             }
                   }
                }
@@ -48,8 +49,7 @@ class Validate
             if (is_array($this->data)) {
                 
             foreach ($this->data  as $key => $value) {
-                
-                if (isset($data_params[$key])) {
+                if (isset($data_params[$key]) && !empty($value) ) {
                         $r = self::validate_value($value,$data_params[$key],$key);
                         if ($r !== 1) {
                             break;
@@ -76,8 +76,8 @@ class Validate
         foreach ($array_condition as  $condition) {
            switch ($condition) {
                case 'onlynumber':
-                   # code...
-                   $r = self::if_validate(preg_match('/^[0-9+]+$/',$value),$key,true);
+                   # code...                   
+                   $r = self::if_validate(preg_match('/^[0-9+ ]+$/',$value),$key,true);                  
                    break; 
                case 'int':
                    # code...
@@ -89,7 +89,7 @@ class Validate
                    break;
                case 'onlyletter':
                    # code...
-                   $r = self::if_validate(preg_match('/^[a-zA-Z]+$/',$value),$key,true);
+                   $r = self::if_validate(preg_match('/^[a-zA-Z ]+$/',$value),$key,true);
                    break;
                case 'email':
                    # code...
@@ -106,19 +106,24 @@ class Validate
                       unset($condition_explode[0]);
                       $this->message_error_alternative = "El valor de ".$key." es muy largo";
                      $r = self::if_validate( strlen($value) <=  $condition_explode[1] ,$key);                     
-                   }else if(strpos($condition,'unique')  !== false){
+                   }else if(strpos($condition,'unique')  !== false){                       
                       $condition_explode = explode(",",$condition);
                       unset($condition_explode[0]);
-                      $this->message_error_alternative = "El valor de ".$key." es ya está en uso, ingrese otro.";
+                      $this->message_error_alternative = "El valor de ".$key."  ya está en uso, ingrese otro.";
                       $result = self::value_unique($value,$condition_explode[1],$key);
                       $r =  self::if_validate($result,$key);
 
                    }else {
                        
                    }
-                   break;
-
+                   break;              
            }
+
+           if ($r !== 1) {
+              break;
+           }
+
+
         }
         return $r ;
 
@@ -157,13 +162,31 @@ class Validate
            $data_sql = array( ':value'=>$value);
            $table =   preg_replace('([^A-Za-z0-9_-])', '', $table);
            $key =   preg_replace('([^A-Za-z0-9_-])', '', $key);
-           $r = $db_class->query("SELECT * FROM ". $table ." WHERE ".$key." = :value ",$data_sql);
+           $key = str_replace($table.'_','',$key); //parche
+           $r = $db_class->query("SELECT ".$key." FROM ". $table ." WHERE ".$key." = :value ",$data_sql);
            if ($r == null) {
                //ok
               return true;
            }else {
-               //error
-              return false;
+               $data_sql = array( ':'.$this->id_table_field => $this->id_table );
+               $r_old = $db_class->query("SELECT ".$key." FROM ". $table ." WHERE ".$this->id_table_field." = :".$this->id_table_field,$data_sql);
+                if ( !empty( $this->id_table) && $r[0][$key] == $r_old [0][$key]  ) {
+                    return true;
+                }else {
+                    return false;
+                }
+
+            //    if ($this->type_sql == "INSERT"   ) {
+            //    //error                   
+            //     return false;
+            //    }else if ($this->type_sql == "UPDATE" ){
+            //         echo '<pre>'; var_dump(  $value ); echo '</pre>'; 
+            //        if ($r[0][$key]  == $value) { //Si el valor original es igual al valor de la tabla permitir 
+            //             return true;
+            //        }else {
+            //             return false;
+            //        }
+            //    }
            }
        }else {
            echo '<pre>'; var_dump( 'Imposible validar ese campo'. $key ); echo '</pre>'; die; /***VAR_DUMP_DIE***/ 

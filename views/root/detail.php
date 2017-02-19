@@ -9,6 +9,8 @@ $data = $user->list_user();
     <table class="pure-table">
     <thead>
         <tr>
+            <th></th>     
+            <th></th>                               
             <th>ID</th>
             <th>CODE|DNI</th>
             <th>Nombres</th>
@@ -24,6 +26,8 @@ $data = $user->list_user();
     <?php foreach ($data as $user): ?>
         
         <tr class="pure-table-odd">
+            <td><a href="<?php echo '/root/edit-user/'.$user['id_user'].'/' ?>">Edit</a></td>            
+            <td><a href="<?php echo '/root/del-user/'.$user['id_user'].'/' ?>">Delete</a></td>            
             <td><?php echo $user['id_user'] ?></td>
             <td><?php echo $user['code'] ?></td>            
             <td><?php echo $user['name'] ?></td>

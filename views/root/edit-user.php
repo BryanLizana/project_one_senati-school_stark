@@ -1,4 +1,5 @@
 <?php 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = new Users();
         $user->id_user =  $_POST['id_user'];        
@@ -27,7 +28,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = $_POST;
             
         }
+}else {
+    if (is_numeric($_GET['id']) && $_GET['id'] !== '0') {
+    $user = new Users();
+    $user->id_user =  $_GET['id'];  
+    $data =  $user->list_user();
+    $data = $data[0];
+    }
+
 }
+
+
+
  ?>
 <div class="main">
     <h2>Agregar Usuario</h2>

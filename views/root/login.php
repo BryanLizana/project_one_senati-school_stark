@@ -2,10 +2,11 @@
   <?php  if( isset($_REQUEST['code']) &&  !empty($_REQUEST['code']) &&  isset($_REQUEST['password']) &&  !empty($_REQUEST['password']) ):  ?>
         <?php 
             //Add Class Users()
-            require_once('../../models/users.php');
+            require_once('../../controllers/defines.php');            
+            require_once(ROOT.'/models/users.php');
 
             //Add Functions Globals
-            require_once('../../controllers/functions.php');
+            require_once(ROOT.'/controllers/functions.php');
             
             $user =  new Users();
 

@@ -1,6 +1,8 @@
 <?php session_start(); ?>
-<?php require_once('../../controllers/functions.php') ?>
-<?php require_once('../../controllers/validate.php') ?>
+<?php require_once('../../controllers/defines.php') ?>
+<?php require_once(ROOT.'/controllers/functions.php') ?>
+<?php  require_once(ROOT.'/models/users.php') ?>
+<?php //require_once('../../controllers/validate.php') ?>
 
 <?php valid_login(); ?>
 <?php valid_permisos($page_this); ?>
