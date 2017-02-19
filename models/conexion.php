@@ -34,6 +34,7 @@ class DB
     {
         //try catch
         //**¡¡
+
        
         $prepare =    $this->db->prepare($sql_prepare);
         $prepare->execute($array_data);
@@ -52,7 +53,6 @@ class DB
               $datalist =   $prepare->fetch();
                break;
        }
-   
         return $datalist;
     }
 }

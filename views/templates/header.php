@@ -1,5 +1,7 @@
 <?php session_start(); ?>
 <?php require_once('../../controllers/functions.php') ?>
+<?php require_once('../../controllers/validate.php') ?>
+
 <?php valid_login(); ?>
 <?php valid_permisos($page_this); ?>
 <!DOCTYPE html>

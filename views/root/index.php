@@ -12,6 +12,9 @@ switch ($_REQUEST['page']) {
     case 'edit-user':
          include_once('edit-user.php');
         break;
+    case 'test':
+         include_once('test.php');
+        break;        
     default:
         include_once('detail.php');
         break;
