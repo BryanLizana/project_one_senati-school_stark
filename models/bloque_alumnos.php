@@ -52,7 +52,7 @@ class BloqueAlumnos
         
     }
 
-    public function list_alumnos() //por bloque
+    public function list_alumno() //por bloque
     {
       global $db_class;
       $data = array(':id_bloque' => $this->id_bloque );

@@ -4,11 +4,10 @@
 <?php require_once(ROOT.'/models/docentes.php') ?>
 
 
- <?php //error_reporting(0); ?>
+ <?php error_reporting(0); ?>
  <?php 
  if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
-        echo '<pre>'; var_dump( $_POST ); echo '</pre>'; die; /***VAR_DUMP_DIE***/ 
         $user = new Users();
         $user->id_user =  $_POST['id_user'];        
         $user->name =  $_POST['name'];
@@ -21,24 +20,29 @@
         $r = $user->save_user();
             if (!empty($r)) {
                 if (is_numeric($r) && $r != '0') {
-                $user->id_user =  $r ;        
-                $data =  $user->list_user();
-                $data = $data[0];
-                //ingresar datos adicionales del alumno
-                $bloque_alumnos = new BloqueAlumnos();
-                $bloque_alumnos->id_user_alumno = $r;
-                $bloque_alumnos->id_bloque = $_POST['id_bloque'];
-                $r = $bloque_alumnos->save_bloque_alumnos(); 
-                if (is_numeric($r)  && $r != '0') {
-                    $info = "alumno Ingresado";                    
+                // $user->id_user =  $r ;        
+                // $data =  $user->list_user();
+                // $data = $data[0];
+                //ingresar datos de cursos y bloques
+                    if (is_array($_POST['bloques'])  && is_array($_POST['cursos']) ) {
+                      $bloque_curso_docente =  new BloqueCursoDocente();
+                      $bloque_curso_docente->id_user_docente = $r; //añadir el id del docente
+                      $bloque_curso_docente->delete_docente_detalle();
 
-                        $alumno =  new Alumnos();
-                        $alumno->id_user = $r;
-                        $data = $alumno->list_alumno();
-                        $data = $data[0]; 
-                }else {
-                    $info = $r;
-                }
+                       foreach ($_POST['bloques'] as $id_bloque) {
+                          $bloque_curso_docente->id_bloque = $id_bloque;   // añadir id del bloque                        
+                          foreach ($_POST['cursos'] as $id_curso) {
+                              $bloque_curso_docente->id_curso = $id_curso; // añadir id del curso
+                              $bloque_curso_docente->save_bloque_curso_docente(); // agregar info detalle del docente
+                          }
+                       }
+                    }
+                    $info = "Docente Ingresado";  
+                    $docente =  new Docentes();
+                    $docente->id_user = $r;
+                    $data = $docente->list_docente();
+                    $data = $data[0]; 
+                    
                 }else {
                 $info = $r;
                 $data = $_POST;
@@ -56,7 +60,7 @@
     // $user->id_user =  $_GET['id'];  
     // $data =  $user->list_user();
     // $data = $data[0];        
-    $docente =  new Docente();
+    $docente =  new Docentes();
     $docente->id_user = $_GET['id'];
     $data = $docente->list_docente();
     $data = $data[0]; 
@@ -119,8 +123,9 @@ $data_bloques  = $bloques->list_bloque();
               </div>
 
               <?php foreach ($data_cursos as $curso): ?>
+                <?php $checked = (in_array($curso['id_curso'],$data['array_cursos'])) ? 'checked': '' ?>              
                 <label for="<?php echo $curso['name'] ?>" class="pure-checkbox">
-                    <input id="<?php echo $curso['name'] ?>" type="checkbox" value="<?php echo $curso['id_curso'] ?>" name="cursos[]">
+                    <input id="<?php echo $curso['name'] ?>" type="checkbox" value="<?php echo $curso['id_curso'] ?>" <?php echo $checked ?> name="cursos[]">
                     <?php echo $curso['name'] ?>
                 </label>
               <?php endforeach ?>
@@ -136,7 +141,8 @@ $data_bloques  = $bloques->list_bloque();
 
               <?php foreach ($data_bloques as $bloque): ?>
                 <label for="<?php echo $bloque['code'] ?>" class="pure-checkbox">
-                    <input id="<?php echo $bloque['code'] ?>" type="checkbox" value="<?php echo $bloque['id_bloque'] ?>" name="bloques[]">
+                    <?php $checked = (in_array($bloque['id_bloque'],$data['array_bloques'])) ? 'checked': '' ?>
+                    <input id="<?php echo $bloque['code'] ?>" type="checkbox" value="<?php echo $bloque['id_bloque'] ?>" <?php echo $checked ?>  name="bloques[]">
                     <?php echo $bloque['code'] ?>
                 </label>
               <?php endforeach ?>
@@ -158,7 +164,7 @@ $data_bloques  = $bloques->list_bloque();
     unset($docentes);
     
     $docentes =  new Docentes();
-    $data = $docentes->list_docentes();
+    $data = $docentes->list_docente();
     
      ?>
      <table class="pure-table">
@@ -180,7 +186,7 @@ $data_bloques  = $bloques->list_bloque();
     <?php foreach ($data as $docente): ?>
         
         <tr class="pure-table-odd">
-            <td><a href="<?php echo '/'.strtolower($_SESSION['user']['type_us']).'/docente/'.$docente['id_user'].'/' ?>">Edit</a></td>            
+            <td><a href="<?php echo '/'.strtolower($_SESSION['user']['type_us']).'/docentes/'.$docente['id_user'].'/' ?>">Edit</a></td>            
             <td><a href="<?php echo '/'.strtolower($_SESSION['user']['type_us']).'/del-docente/'.$docente['id_user'].'/' ?>">Delete</a></td>            
             <td><?php echo $docente['id_user'] ?></td>
             <td><?php echo $docente['code'] ?></td>            
