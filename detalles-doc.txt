@@ -1,0 +1,2 @@
+NO se podrá cambiar al alumno una vez se halla generado el alumno control debido a que los datos de bloque ya está relazionados
+agrgar fecha de nacimiento o edad del  users
