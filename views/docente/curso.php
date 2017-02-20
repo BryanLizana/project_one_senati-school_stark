@@ -8,6 +8,11 @@
  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $alumno_asistencias =  new AlumnoAsistencias();
+
+    $string  = implode(',',array_keys($_POST['alumno_control']));
+    $alumno_asistencias->string_ids = $string;
+    $alumno_asistencias->pre_asistencia_update();
+
    foreach ($_POST['alumno_control'] as $id => $status_assistencia) {
         $alumno_asistencias->id_alumno_control = $id;
         $alumno_asistencias->asistencia = $status_assistencia;
