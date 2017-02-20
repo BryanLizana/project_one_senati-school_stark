@@ -13,7 +13,7 @@ class DB
     {
         try {
          $this->db = new PDO('mysql:host='.$this->host.';dbname='.$this->name_database.'', $this->user_server, $this->pass_server);
-            
+         
         } catch (PDOException $e) {
             echo '<pre>'; var_dump( $e ); echo '</pre>'; die; /***VAR_DUMP_DIE***/ 
             die();

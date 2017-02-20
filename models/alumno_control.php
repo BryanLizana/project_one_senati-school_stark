@@ -7,6 +7,13 @@ require_once('/conexion.php');
  */
 class AlumnoControl 
 {
+
+    public $id_user_alumno;
+    public $id_user_docente;
+    public $id_curso;
+    public $id_bloque;
+    public $status;
+    
     
     function __construct()
     {
@@ -43,5 +50,31 @@ class AlumnoControl
        }
 
        return 'Listo';
+    }
+
+    //listar a los alumnos de un bloque con un curso asignado => para la toma de asistencia  o adición de notas
+    public function list_alumno_by_curso()
+    {
+        global $db_class;
+        if (self::validate($this->id_curso) && self::validate($this->id_bloque)  && self::validate($this->id_user_docente) ) {
+           
+            $data = array(':id_bloque' => $this->id_bloque ,':id_curso' => $this->id_curso ,':id_user_docente' => $this->id_user_docente );
+           $sql = "SELECT * FROM alumno_control as ac inner join users as u on ac.id_user_alumno = u.id_user where id_bloque = :id_bloque and id_curso = :id_curso and id_user_docente = :id_user_docente and u.status = 'ACTIVO' ";
+           $r = $db_class->query($sql,$data);
+
+           return $r;
+
+        }
+       
+    }
+
+    //validar si es un id válido
+    private function validate($numeric)
+    {
+        if (is_numeric($numeric)  && $numeric > 0 ) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }

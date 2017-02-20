@@ -12,7 +12,9 @@ $data_cursos = $bloque_curso_docente->list_curso_by_bloque_docente();
       <?php foreach ($data_cursos as $curs): ?>
         <tr>
             <td>Curso:<?php echo $curs['description'] ?></td>
-            <td><a href="<?php echo '/'.strtolower($_SESSION['user']['type_us']).'/curso/'.$curs['id_curso'].'/' ?>">Listar Alumnos de este curso</a></td>            
+            <!--El id que va despues de /curso/  no es el curso en sí, es el id que identifica el curso bloque y docente;-->
+            <!--IDEA  VALIDATE WITH SESSION ID_BLOQUE  -->
+            <td><a href="<?php echo '/'.strtolower($_SESSION['user']['type_us']).'/curso/'.$curs['id_bloquecursodocente'].'/' ?>">Listar Alumnos de este curso</a></td>            
         </tr>
        <?php endforeach ?>
     </table>

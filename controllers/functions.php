@@ -32,6 +32,12 @@ function valid_permisos($page)
     }
 }
 
+function validate_permisos($id_original = 0, $id_compare = 0)
+{
+   if ($id_original != $id_compare) {
+      header('Location:/'.strtolower($_SESSION['user']['type_us']).'/');
+   }
+}
 // function mi_echo($value_to_print)
 // {
 
