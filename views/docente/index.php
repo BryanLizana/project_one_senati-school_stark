@@ -5,12 +5,19 @@
 <?php 
 switch ($_REQUEST['page']) {
     case 'alumno':
-    echo 'tet';
         include_once('alumno.php');
         break;
-    
+    case 'list-bloques':
+        include_once('list-bloques.php');
+        break;
+    case 'bloque':
+        include_once('bloque.php');
+        break;   
+    case 'curso':
+        include_once('curso.php');
+        break;                
     default:
-        # code...
+        include_once('detail.php');
         break;
 }
  ?>

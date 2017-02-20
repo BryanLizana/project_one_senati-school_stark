@@ -15,9 +15,9 @@
              ?>
              <?php foreach ($list_nav as $nav): ?>
              <?php $url_nav = '/'.strtolower($_SESSION['user']['type_us']).'/'.$nav['code_menu'].'/' ; ?>
-                <li class="pure-menu-item"><a href="<?php echo $url_nav ?>" class="pure-menu-link"><?php echo  $nav['name'] ?></a></li>                 
+                <li class="pure-menu-item"><a href="<?php echo $url_nav ?>" class="pure-menu-link"><?php echo  $nav['name'] ?></a></li> 
              <?php endforeach ?>
-             
+                <li class="pure-menu-item"><a href="/logout/" class="pure-menu-link">Logout</a></li>
         </ul>
     </div>
 </div>

@@ -13,6 +13,7 @@ function up_to_session_user($usuario = 0)
     session_destroy();
     session_start();
    if (isset($usuario['type_us']) ) {       
+       $_SESSION['user']['ID'] = $usuario['id_user'];
        $_SESSION['user']['code'] = $usuario['code'];
        $_SESSION['user']['name'] = $usuario['name'];
        $_SESSION['user']['last_name'] = $usuario['last_name'];

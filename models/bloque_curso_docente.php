@@ -53,4 +53,28 @@ class BloqueCursoDocente
            return false;
        }
     }
+
+    public function list_bloques_by_docente()
+    {
+        if (self::validate($this->id_user_docente)) {
+           global $db_class;
+           $data = array(':id_user_docente' => $this->id_user_docente );
+           $sql = "SELECT * FROM bloque_curso_docente as bcd inner join bloques as b  on bcd.id_bloque = b.id_bloque  where
+            bcd.id_user_docente = :id_user_docente";
+           $r = $db_class->query($sql,$data);
+           return $r;
+        }
+    }
+
+    public function list_curso_by_bloque_docente($value='')
+    {
+        if (self::validate($this->id_user_docente) &&  self::validate($this->id_bloque)) {
+           global $db_class;
+           $data = array(':id_user_docente' => $this->id_user_docente,':id_bloque' => $this->id_bloque);
+           $sql = "SELECT c.id_curso,c.name,c.description FROM bloque_curso_docente as bcd inner join cursos as c  on c.id_curso = bcd.id_curso  where bcd.id_user_docente = :id_user_docente and bcd.id_bloque = :id_bloque";
+           $r = $db_class->query($sql,$data);
+           return $r;
+        }
+    }
+    
 }

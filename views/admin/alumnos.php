@@ -15,7 +15,11 @@
         $user->code =  $_POST['code'];
         $user->email =  $_POST['email'];
         $user->phone =  $_POST['phone'];
-        $user->password =  $_POST['code'];
+        if ($_POST['password'] == '') {
+             $user->password =  $_POST['code'];
+        }else {
+             $user->password =  $_POST['password'];            
+        }
         $user->type_us = 'ALUMNO';
         $r = $user->save_user();
             if (!empty($r)) {
@@ -40,7 +44,7 @@
               }
             }else {
                $info = $r;
-               $data = $_POST;
+            //    $data = $_POST;
             }
         }else {
             $info = "No hay cambios";                       
@@ -50,18 +54,13 @@
 
     
  }else {
-    if (is_numeric($_GET['id']) && $_GET['id'] !== '0') {
-    // $user = new Users();
-    // $user->id_user =  $_GET['id'];  
-    // $data =  $user->list_user();
-    // $data = $data[0];        
+    if (is_numeric($_GET['id']) && $_GET['id'] !== '0') {    
     $alumno =  new Alumnos();
     $alumno->id_user = $_GET['id'];
     $data = $alumno->list_alumno();
     $data = $data[0]; 
 
     }
-
 }
 
 //list bloque
