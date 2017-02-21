@@ -44,7 +44,7 @@ if (count($string_ids) > 0) {
     $alumno_asistencias->string_ids = $string_ids;
     $alumno_asistencias->fecha = date('Y-m-d'); 
     $alumno_asistencias  = $alumno_asistencias->list_alumno_asistencia();
-
+     $ids_asistencias = array('0' );
     foreach ($alumno_asistencias as $id_asistencia) {
         $ids_asistencias[] = $id_asistencia['id_alumno_control'];
     }

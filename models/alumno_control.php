@@ -1,5 +1,5 @@
 <?php 
-require_once('/conexion.php');
+require_once(ROOT.'/models/conexion.php');
 
 
 /**
@@ -13,6 +13,8 @@ class AlumnoControl
     public $id_curso;
     public $id_bloque;
     public $status;
+    
+    public $id_alumno_control;    
     
     
     function __construct()
@@ -74,6 +76,20 @@ class AlumnoControl
             return true;
         }else {
             return false;
+        }
+    }
+
+
+    public function list_alumno_control()
+    {
+        global $db_class;
+        if (is_numeric($this->id_alumno_control)  && $this->id_alumno_control != '0') {
+            $data = array(':id_alumno_control' => $this->id_alumno_control );
+            $sql = "SELECT * FROM alumno_control as ac inner join users as u on u.id_user = ac.id_user_alumno where id_alumno_control = :id_alumno_control";
+            $r =  $db_class->query($sql,$data,'ROW');
+            return $r ;
+        }else {
+            return null;
         }
     }
 }

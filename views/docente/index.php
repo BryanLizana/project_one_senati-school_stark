@@ -15,8 +15,7 @@ switch ($_REQUEST['page']) {
         break;   
     case 'curso':
         include_once('curso.php');
-        break;                
-    default:
+        break;  
     case 'alumno':
         include_once('alumno.php');
         break;                

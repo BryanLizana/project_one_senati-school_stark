@@ -1,7 +1,6 @@
 <?php 
-require_once('/conexion.php');
-require_once('/users.php');
-
+require_once(ROOT.'/models/conexion.php');
+require_once(ROOT.'/models/users.php');
 
 /**
  * 
