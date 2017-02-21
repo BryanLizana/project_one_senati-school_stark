@@ -33,6 +33,23 @@ $alumno_control->id_curso = $detail_data['id_curso'] ;
 $alumno_control->id_user_docente = $_SESSION['user']['ID'] ;
 $data_alumno = $alumno_control->list_alumno_by_curso();
 
+
+///alumno asistencias
+foreach ($data_alumno  as $alumno) {
+    $string_ids[] = $alumno['id_alumno_control'];
+}
+if (count($string_ids) > 0) {
+   $string_ids = implode(',',$string_ids);
+    $alumno_asistencias =  new AlumnoAsistencias();
+    $alumno_asistencias->string_ids = $string_ids;
+    $alumno_asistencias->fecha = date('Y-m-d'); 
+    $alumno_asistencias  = $alumno_asistencias->list_alumno_asistencia();
+
+    foreach ($alumno_asistencias as $id_asistencia) {
+        $ids_asistencias[] = $id_asistencia['id_alumno_control'];
+    }
+
+}
  ?>
 <div class="main">
     <h3>Bloque: <?php echo $detail_data['code'] ?></h3>
@@ -54,14 +71,25 @@ $data_alumno = $alumno_control->list_alumno_by_curso();
                 <td><?php  echo $alumno['last_name'] ?> <?php  echo $alumno['name'] ?></td>
                 <td><a href="/<?php echo strtolower($_SESSION['user']['type_us']) ?>/alumno/<?php echo $alumno['id_alumno_control'] ?>/">ir a notas</a></td>
                 <td>
+                    <?php 
+                        if (in_array($alumno['id_alumno_control'],$ids_asistencias) ) {
+                            $checked_si = 'checked';
+                            $checked_no = '';
+                            
+                        }else {
+                            $checked_si = '';
+                            $checked_no = 'checked';
+                        }
+                     ?>
+
                    <label for="<?php echo $alumno['id_alumno_control'] ?>_A" class="pure-checkbox">
-                       <?php //echo $checked ?>
-                    <input id="<?php echo $alumno['id_alumno_control'] ?>_A" type="radio" value="1" name="alumno_control[<?php echo $alumno['id_alumno_control'] ?>]"  >SI
+                       
+                    <input id="<?php echo $alumno['id_alumno_control'] ?>_A" type="radio" value="1" name="alumno_control[<?php echo $alumno['id_alumno_control'] ?>]" <?php echo $checked_si ?>  >SI
                    </label>
                    
                    <label for="<?php echo $alumno['id_alumno_control'] ?>_B" class="pure-checkbox">
                        <?php //echo $checked ?>
-                    <input id="<?php echo $alumno['id_alumno_control'] ?>_B" type="radio" value="0" name="alumno_control[<?php echo $alumno['id_alumno_control'] ?>]" >NO
+                    <input id="<?php echo $alumno['id_alumno_control'] ?>_B" type="radio" value="0" name="alumno_control[<?php echo $alumno['id_alumno_control'] ?>]" <?php echo $checked_no ?>  >NO
                    </label>         
                 </td>
             </tr>

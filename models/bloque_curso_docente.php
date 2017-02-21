@@ -60,14 +60,16 @@ class BloqueCursoDocente
         if (self::validate($this->id_user_docente)) {
            global $db_class;
            $data = array(':id_user_docente' => $this->id_user_docente );
-           $sql = "SELECT * FROM bloque_curso_docente as bcd inner join bloques as b  on bcd.id_bloque = b.id_bloque  where
+           $sql = "SELECT DISTINCT b.id_bloque,b.code  FROM bloque_curso_docente as bcd inner join bloques as b  on bcd.id_bloque = b.id_bloque  where
             bcd.id_user_docente = :id_user_docente";
            $r = $db_class->query($sql,$data);
+
+           
            return $r;
         }
     }
 
-    public function list_curso_by_bloque_docente($value='')
+    public function list_curso_by_bloque_docente()
     {
         if (self::validate($this->id_user_docente) &&  self::validate($this->id_bloque)) {
            global $db_class;

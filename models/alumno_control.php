@@ -61,7 +61,6 @@ class AlumnoControl
             $data = array(':id_bloque' => $this->id_bloque ,':id_curso' => $this->id_curso ,':id_user_docente' => $this->id_user_docente );
            $sql = "SELECT * FROM alumno_control as ac inner join users as u on ac.id_user_alumno = u.id_user where id_bloque = :id_bloque and id_curso = :id_curso and id_user_docente = :id_user_docente and u.status = 'ACTIVO' ";
            $r = $db_class->query($sql,$data);
-
            return $r;
 
         }
