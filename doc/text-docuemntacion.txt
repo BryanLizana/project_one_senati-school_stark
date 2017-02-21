@@ -1,0 +1,12 @@
+Intranet para la administración de un Colegio:
+EL Sistema permite un rápido manejo de la información que necesita un colegio, como:
+Detalles de alumno.
+Detalles de Docentes.
+Detalles de Administradores
+
+Requerimientos del Sistema:
+-Poder ingresar asistencia con total libertad, tener en cuenta que cada curso toma su propia asistencia.
+-Poder ingresae notas de un alumno.
+-Listar informe total del alumno para ser visto por sus apoderados.
+-Administración de ususarios.
+
