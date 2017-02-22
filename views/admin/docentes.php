@@ -15,7 +15,7 @@
         $user->code =  $_POST['code'];
         $user->email =  $_POST['email'];
         $user->phone =  $_POST['phone'];
-        $user->password =  $_POST['code'];
+        $user->password =  ($_POST['password'] == '')?$_POST['code'] :  $_POST['password'];
         $user->type_us = 'DOCENTE';
         $r = $user->save_user();
             if (!empty($r)) {

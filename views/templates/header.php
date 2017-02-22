@@ -25,8 +25,8 @@
         <?php require_once('../templates/nav.php') ?>
     </div>
 
-    <div style="height: 150px;">
+    <!--<div style="height: 150px;">
         
-    </div>
+    </div>-->
 <hr>
 

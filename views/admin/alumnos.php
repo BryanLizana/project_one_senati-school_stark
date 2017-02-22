@@ -44,7 +44,7 @@
               }
             }else {
                $info = $r;
-            //    $data = $_POST;
+               $data = $_POST;
             }
         }else {
             $info = "No hay cambios";                       

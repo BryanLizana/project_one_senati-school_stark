@@ -27,7 +27,10 @@ switch ($_REQUEST['page']) {
         break;             
     case 'docentes':
          include_once('docentes.php');
-        break;                    
+        break; 
+    case 'generate':
+         include_once('generate.php');
+        break;                             
     default:
         include_once('detail.php');
         break;

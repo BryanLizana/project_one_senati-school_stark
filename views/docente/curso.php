@@ -1,9 +1,6 @@
 <?php require_once('../../models/bloque_curso_docente.php') ?>
 <?php require_once('../../models/alumno_control.php') ?>
 <?php require_once('../../models/alumno_asistencias.php') ?>
-
-
-
 <?php 
  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

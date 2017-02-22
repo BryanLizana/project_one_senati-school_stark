@@ -197,11 +197,15 @@ foreach ($data_complete as $alumno_control) {
                     <td><?php echo  $alumno_control['last_name_docente'] ?> </td>                     
                     <td><?php echo $curso ?> </td> 
                     
-
+                
                 <?php  foreach ($asistencia as $dia) {    ?> 
-                        <td><?php echo $dia['asistencia'] ?> </td>
-                <?php
-            }            
+                            <?php foreach ($fechas as $fecha): ?>
+                                <?php if ($dia['fecha'] != $fecha) :  ?> 
+                                    <td></td>
+                                <?php  endif;  ?>
+                            <?php endforeach ?>
+                           <td><?php echo  $dia['asistencia'] ?></td>
+                <?php }            
             ?> </tr>  <?php
             }
         ?>

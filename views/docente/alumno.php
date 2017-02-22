@@ -2,6 +2,7 @@
 <?php require_once('../../models/alumno_control.php'); ?>
 <?php require_once('../../models/alumno_notas.php'); ?>
 
+
 <?php 
 $temporada_clase  =  json_decode( file_get_contents('temporada_clase.json'), 1);
 // echo '<pre>'; var_dump( $temporada_clase ); echo '</pre>';  /***VAR_DUMP_DIE***/ 
@@ -27,8 +28,8 @@ $alumno_control =  new AlumnoControl();
 $alumno_control->id_alumno_control = $_GET['id'];
 $data_alumno_control = $alumno_control->list_alumno_control();
 //validate permisos 
-if ($data_alumno_control['id_user_docente'] != $_SESSION['user']['ID']) {
-  die('nop');
+if ($data_alumno_control['id_user_docente'] != $_SESSION['user']['ID']   ) {
+  die('Access denied');
 }
 
 $alumno_notas = new AlumnoNotas();
@@ -60,7 +61,12 @@ $data = $r_notas;
         </div>
         
         <a href="<?php  echo '/'.strtolower($_SESSION['user']['type_us']).'/alumno/'.$_GET['id'].'/' ?>"> <button type="button">Cancelar</button> </a> 
+        
         <input type="submit" name="" value="Save">
     </form>
+    <br>
+      <!--<a href="<?php  echo '/'.strtolower($_SESSION['user']['type_us']).'/cursos//' ?>"> <button type="button">Atrás</button> </a> -->
+    
+
 </div>
 
