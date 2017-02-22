@@ -22,7 +22,7 @@ class AlumnoAsistencias
     public function save_asistencia()
     {
        global $db_class;
-    //    $this->fecha = date('Y-m-d', strtotime(date('Y-m-d') . ' +3 day'));         
+    //    $this->fecha = date('Y-m-d', strtotime(date('Y-m-d') . ' +6 day'));         
        $this->fecha = date('Y-m-d');               
              
        if (is_numeric( $this->id_alumno_control) && $this->id_alumno_control != '0') {
@@ -35,7 +35,7 @@ class AlumnoAsistencias
     public function pre_asistencia_update()
     {
       global $db_class;
-    //   $this->fecha = date('Y-m-d', strtotime(date('Y-m-d') . ' +3 day')); 
+    //   $this->fecha = date('Y-m-d', strtotime(date('Y-m-d') . ' +6 day')); 
       $this->fecha = date('Y-m-d');    
          
       $data = array(':fecha'=> $this->fecha );

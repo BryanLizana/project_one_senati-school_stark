@@ -13,11 +13,12 @@
 $alumno = new AlumnoControl();
 $alumno->id_user_alumno = $_SESSION['user']['ID'];
  $data_complete = $alumno->list_data_alumno_control();
+
 $data = $data_complete[0];
-$bloque = new Bloques();
-$bloque->id_bloque = $data['id_bloque'];
-$bloque = $bloque->list_bloque();
-$bloque = $bloque[0];
+// $bloque = new Bloques();
+// $bloque->id_bloque = $data['id_bloque'];
+// $bloque = $bloque->list_bloque();
+// $bloque = $bloque[0];
  ?>
 
 <div class="main">
@@ -38,13 +39,12 @@ $bloque = $bloque[0];
             <label for="password">Password Actual</label>
             <input id="password" type="password" placeholder="Password">
         </div>
-
 </form>
 
 <hr>    
 <h2>Notas</h2>
 <h3>Alumno: <?php echo $data['last_name'] .' '.$data['name']?> </h3>
-<h4>Bloque: <?php echo $bloque['code'] ?> </h4>
+<h4>Bloque: <?php echo $data['bcode'] ?> </h4>
 <?php  
 
     // echo '<pre>'; var_dump( $data_complete ); echo '</pre>'; die; /***VAR_DUMP_DIE***/ 
@@ -99,18 +99,19 @@ foreach ($data_complete as $alumno_control) {
     $alumno_nota->id_alumno_control = $alumno_control['id_alumno_control'];
 
 
-    $docentes =  new Users();
-    $docentes->id_user = $alumno_control['id_user_docente'];
-    $docente = $docentes->list_user();
-    $docente = $docente[0];
+    // $docentes =  new Users();
+    // $docentes->id_user = $alumno_control['id_user_docente'];
+    // $docente = $docentes->list_user();
+    // $docente = $alumno_control[0];
 
-    $cursos =  new Cursos();
-    $cursos->id_curso = $alumno_control['id_curso'];
-    $curso = $cursos->list_curso();
-    $curso = $curso[0];
+    // $cursos =  new Cursos();
+    // $cursos->id_curso = $alumno_control['id_curso'];
+    // $curso = $cursos->list_curso();
+    // $curso = $curso[0];
+    $curso =  $alumno_control['description'];
     ?> 
-            <td><?php  echo  $docente['last_name'] ?></td>
-            <td><?php  echo  $curso['description'] ?></td>
+            <td><?php  echo  $alumno_control['last_name_docente'] ?></td>
+            <td><?php  echo  $curso ?></td>
             
          <?php list_nota_alumno_('1',$alumno_control['id_alumno_control']) ?>
          <?php list_nota_alumno_('2',$alumno_control['id_alumno_control']) ?>
@@ -122,36 +123,40 @@ foreach ($data_complete as $alumno_control) {
     </tbody>
 </table>
 <hr>
+
+<?php  ///weeek
+            $ddate = date('Y-m-d');
+            $date = new DateTime($ddate);
+            $week = $date->format("W");
+            // echo "Weeknummer: $week";
+            $add_sem = (is_numeric($_GET['week'])) ? $_GET['week'] : '0' ;
+            // if ($add_sem < 10 && $add_sem > - 10) {
+            //     $add_sem = $add_sem[0].'0'.$add_sem[1];
+
+            // }
+
+            $week_number = (date('W',strtotime( $add_sem." week") ) ) ;// (is_numeric($_GET['week'])  && $_GET['week'] != '0')? $_GET['week'] : $week ;
+            $year = date('Y');
+            for($day=1; $day<=7; $day++)
+            {
+                $fechas[] = "'".date('Y-m-d', strtotime($year."W".$week_number.$day))."'" ;
+            }
+
+            
+            // echo '<pre>'; var_dump( $fechas ); echo '</pre>';/***VAR_DUMP_DIE***/ 
+ ?>
+
 <h2>Asistencias</h2>
 <h3>Alumno:XX</h3>
 <h4>Fecha: Del Lunes-13/02/2017   al   Domingo-20/02/2017 </h4>
-<a href=""> << Semena anterior</a>
+<a href="?week=<?php echo (  $add_sem - 1 ) ?>"> << Semena anterior</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<a href="">Semena siguiente >>  </a>
+<a href="?week=<?php echo ( $add_sem +  1 ) ?>">Semena siguiente >>  </a>
 <br>
 <br>
 
-<?php 
-    $dia = date('d');
 
-    foreach ($data_complete as $alumno_control) {
-       $alumno_asistencia =  new AlumnoAsistencias();
-       $alumno_asistencia->id_alumno_control = $alumno_control['id_alumno_control'];
-       $alumno_asistencia->string_ids = "'2017-02-20','2017-02-21'";
-       $asistencia = $alumno_asistencia->list_alumno_control_asistencia();
-       foreach ($asistencia as $dia) {
-          $satus_dia['id_alumno_control'][] = $dia['id_alumno_control'] ;           
-          $satus_dia['dia'][] = $dia['fecha'] ;
-          $satus_dia['status'][] = $dia['asistencia'] ;
-          
-       }
-    }
-           echo '<pre>'; var_dump( $satus_dia ); echo '</pre>'; /***VAR_DUMP_DIE***/ 
-    
-
- ?>
 <table class="pure-table">
     <thead>
         <tr>
@@ -169,33 +174,37 @@ foreach ($data_complete as $alumno_control) {
     </thead>
 
     <tbody>
-        <tr class="pure-table-odd">
-            <td>1</td>
-            <td>Juan</td>
-            <td>Matemática</td>
-            <td>A</td>
-            <td>T</td>
-            <td>A</td>
-            <td>A</td>
-            <td>A</td>
-            <td>A</td>
-            <td>A</td>                       
-        </tr>
 
-        <tr >
-            <td>1</td>
-            <td>Kuancho</td>            
-            <td>Comunicacion</td>
-            <td>T</td>
-            <td>T</td>
-            <td>T</td>
-            <td>F</td>
-            <td>F</td>
-            <td>A</td>
-            <td>A</td>                      
-        </tr>
+            <?php 
+            foreach ($data_complete as $alumno_control) {
+            $alumno_asistencia =  new AlumnoAsistencias();
+            $alumno_asistencia->id_alumno_control = $alumno_control['id_alumno_control'];
 
-   
+            $alumno_asistencia->string_ids = implode(',',$fechas);
+            $asistencia = $alumno_asistencia->list_alumno_control_asistencia();
+
+                // $docentes =  new Users();
+                // $docentes->id_user = $alumno_control['id_user_docente'];
+                // $docente = $docentes->list_user();
+                // $docente = $docente[0];
+
+                // $cursos =  new Cursos();
+                // $cursos->id_curso = $alumno_control['id_curso'];
+                // $curso = $cursos->list_curso();
+                $curso = $alumno_control['description']
+                ?> <tr class="pure-table-odd">
+                    <td> </td> 
+                    <td><?php echo  $alumno_control['last_name_docente'] ?> </td>                     
+                    <td><?php echo $curso ?> </td> 
+                    
+
+                <?php  foreach ($asistencia as $dia) {    ?> 
+                        <td><?php echo $dia['asistencia'] ?> </td>
+                <?php
+            }            
+            ?> </tr>  <?php
+            }
+        ?>
     </tbody>
 </table>
 

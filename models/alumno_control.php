@@ -98,7 +98,11 @@ class AlumnoControl
          global $db_class;
         if (is_numeric($this->id_user_alumno)  && $this->id_user_alumno != '0') {
             $data = array(':id_user_alumno' => $this->id_user_alumno );
-            $sql = "SELECT * FROM alumno_control as ac inner join users as u on u.id_user = ac.id_user_alumno where id_user_alumno = :id_user_alumno";
+            $sql = "SELECT c.description ,c.id_curso , b.code as 'bcode' ,b.id_bloque, ac.id_alumno_control, u.name, u.last_name ,u.code, u.id_user, u.email, u.phone,u.type_us, ud.last_name  as 'last_name_docente' ,ud.id_user as 'id_user_docente' FROM alumno_control as ac inner join users as u on u.id_user = ac.id_user_alumno
+                    inner join cursos as c on c.id_curso = ac.id_curso  
+                    inner join users as ud on ud.id_user = ac.id_user_docente
+                    inner join bloques as b on b.id_bloque = ac.id_bloque                      
+                         where  id_user_alumno = :id_user_alumno";
             $r =  $db_class->query($sql,$data);
             return $r ;
         }else {
