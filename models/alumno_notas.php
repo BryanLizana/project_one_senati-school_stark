@@ -55,7 +55,7 @@ class AlumnoNotas
                          );
 
         $sql  = "INSERT INTO alumno_notas(id_alumno_control,n_nota,nota,temporada_clase)  values(:id_alumno_control,:n_nota,:nota,:temporada_clase) ";
-        $r  =$db_class->query($sql,$data);                
+        $r  =$db_class->query($sql,$data,'INSERT'); 
         return $r;
     }
 

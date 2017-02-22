@@ -52,4 +52,15 @@ class AlumnoAsistencias
         $r = $db_class->query($sql,$data);
         return $r;
     }
+
+    public function list_alumno_control_asistencia()
+    {
+         global $db_class;  
+            
+        $data = array(':id_alumno_control'=> $this->id_alumno_control );
+        $sql = "SELECT * FROM alumno_asistencias  where fecha in ( $this->string_ids ) and id_alumno_control = :id_alumno_control ";
+        $r = $db_class->query($sql,$data);
+        
+        return $r;
+    }
 }

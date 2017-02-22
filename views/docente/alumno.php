@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     for ($i=1; $i < 5; $i++) { 
         $alumno_notas->n_nota ='nota_'.$i;
         $alumno_notas->nota = $_POST['nota_'.$i];
-        $alumno_notas->save_nota();
+       $r = $alumno_notas->save_nota();
     }
 
 }

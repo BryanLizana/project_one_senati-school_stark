@@ -2,3 +2,7 @@ NO se podrá cambiar al alumno una vez se halla generado el alumno control debido
 agrgar fecha de nacimiento o edad del  users
 
 Ingreso de notas a integer no decimnal
+
+
+
+TRouble of n_nota : ALTER TABLE calls CHANGE incoming_Cid incoming_Cid CHAR(34);  -Data truncated for column 'n_nota' at row 1

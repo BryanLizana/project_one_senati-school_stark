@@ -95,6 +95,30 @@ class BloqueCursoDocente
        }
     }
 
-  
+    public function list_cursos()
+    {
+            global $db_class;
+
+            //list all cursos
+            $sql = "select * from cursos  where id_curso not in ( SELECT id_curso FROM bloque_curso_docente  )";
+            $r  = $db_class->query($sql);
+            unset($sql);
+            unset($data);
+            // Result:  list  | null 
+            return $r;
+    }
+
+      public function list_bloques()
+    {
+            global $db_class;
+
+            //list all cursos
+            $sql = "select * from bloques  where id_bloque not in ( SELECT id_bloque FROM bloque_curso_docente  )";
+            $r  = $db_class->query($sql);
+            unset($sql);
+            unset($data);
+            // Result:  list  | null 
+            return $r;
+    }
     
 }

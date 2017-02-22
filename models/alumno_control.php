@@ -92,4 +92,17 @@ class AlumnoControl
             return null;
         }
     }
+
+    public function list_data_alumno_control()
+    {
+         global $db_class;
+        if (is_numeric($this->id_user_alumno)  && $this->id_user_alumno != '0') {
+            $data = array(':id_user_alumno' => $this->id_user_alumno );
+            $sql = "SELECT * FROM alumno_control as ac inner join users as u on u.id_user = ac.id_user_alumno where id_user_alumno = :id_user_alumno";
+            $r =  $db_class->query($sql,$data);
+            return $r ;
+        }else {
+            return null;
+        }
+    }
 }

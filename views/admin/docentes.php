@@ -68,6 +68,7 @@
     }
 
 }
+//list only disponibles
 $cursos = new Cursos();
 $data_cursos  = $cursos->list_curso();
 
