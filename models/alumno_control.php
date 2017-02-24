@@ -21,6 +21,8 @@ class AlumnoControl
     {
         # code...
     }
+
+    ///generar datos de control para el alumno. Estos se generan por curso y docente de cada alumno.
     public function generate()
     {
        global $db_class;
@@ -37,6 +39,7 @@ class AlumnoControl
             $sql_for_insert = "SELECT * FROM bloque_curso_docente where id_bloque =:id_bloque";
             $list_for_insert = $db_class->query($sql_for_insert,$data);
             foreach ($list_for_insert as $value) {
+                  //ingresarlos en la tabla
                 $data = array(':id_bloque' =>   $id_bloque ,
                                 ':id_curso' => $value['id_curso'],
                                 ':id_user_alumno' => $id_alumno,
@@ -47,10 +50,7 @@ class AlumnoControl
                          VALUES(:id_bloque,:id_curso,:id_user_alumno,:id_user_docente,'ACTIVO')";
                 $db_class->query($sql,$data);
             }
-            //ingresarlos en la tabla
-
        }
-
        return 'Listo';
     }
 
@@ -80,6 +80,7 @@ class AlumnoControl
     }
 
 
+    //lista los datos de control de un alumno con sus datos del alumno
     public function list_alumno_control()
     {
         global $db_class;
@@ -93,6 +94,7 @@ class AlumnoControl
         }
     }
 
+    //Un listado de control total  del alumno sobre sus  cursos y docentes
     public function list_data_alumno_control()
     {
          global $db_class;

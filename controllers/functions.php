@@ -1,5 +1,7 @@
 <?php 
 
+
+// validar si es un usuario logeado
  function valid_login()
 { 
     if (!isset($_SESSION['user']) || empty($_SESSION['user']) ) {
@@ -7,10 +9,12 @@
     }
 }
 
+
+//cargar los datos del usuario recien ingresado en una session
 function up_to_session_user($usuario = 0)
 {
-    session_start();    
-    session_destroy();
+    session_start();        //forzar el inicio de session
+    session_destroy();  //destruir session anterior
     session_start();
    if (isset($usuario['type_us']) ) {       
        $_SESSION['user']['ID'] = $usuario['id_user'];
@@ -25,6 +29,8 @@ function up_to_session_user($usuario = 0)
 
 }
 
+
+// valida si el usuario puede ingesar a la página o vista actual
 function valid_permisos($page)
 {
     if ($_SESSION['user']['type_us'] !== $page && $_SESSION['user']['type_us'] !== "ROOT" ) {
@@ -32,6 +38,8 @@ function valid_permisos($page)
     }
 }
 
+
+// valida si un usuario tiene permisos sobre otro
 function validate_permisos($id_original = 0, $id_compare = 0)
 {
    if ($id_original != $id_compare) {

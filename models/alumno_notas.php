@@ -33,7 +33,7 @@ class AlumnoNotas
         $r = $db_class->query($sql,$data);
         $i = 1;
         foreach ($r as $nota ) {
-            
+            //asociar cada nota a una variable específica
             $data_r['nota_'.$i] = $nota['nota'];
 
             $i++;
@@ -48,6 +48,7 @@ class AlumnoNotas
     public function save_nota()
     {
         global $db_class;
+        //preparar parámetros
         $data = array(':id_alumno_control' => $this->id_alumno_control,
                         ':n_nota' =>  $this->n_nota ,
                         ':nota' =>  $this->nota ,                 
@@ -59,6 +60,7 @@ class AlumnoNotas
         return $r;
     }
 
+//eliminar notas para el ingreso de las nuevas- Update
     public function delete_nota()
     {
          global $db_class;

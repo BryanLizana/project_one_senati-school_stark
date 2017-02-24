@@ -14,6 +14,8 @@ class BloqueAlumnos
         # code...
     }
 
+
+    //asigna a cada alumno a su bloque correspondiente
     public function save_bloque_alumnos()
     {
         global $db_class;
@@ -42,7 +44,7 @@ class BloqueAlumnos
              //update bloque vacantes
             $bloque =  new Bloques();
             $bloque->id_bloque = $this->id_bloque;
-            $bloque->update_vacante(); 
+            $bloque->update_vacante(); ///reutiliza método de la class Bloque
             }
         }else {
                 $r = "Error- Bloques Alumnos";
@@ -52,6 +54,8 @@ class BloqueAlumnos
         
     }
 
+
+    //lista a los alumnos(id) por bloque
     public function list_alumno() //por bloque
     {
       global $db_class;
@@ -62,6 +66,8 @@ class BloqueAlumnos
 
     }
 
+
+    //optieme el bloque de un alumno
     public function get_bloque() // por user - alumno
     {
       global $db_class;

@@ -58,6 +58,7 @@ if (count($string_ids) > 0) {
     <table class="pure-table">
         <thead>
             <th>ID Alumno</th>
+            <th>DNI</th>            
             <th>Apellidos y Nombres</th>
             <th>Notas</th>
             <th>Asistencia</th>
@@ -66,6 +67,8 @@ if (count($string_ids) > 0) {
         <?php foreach ($data_alumno as $alumno): ?>
             <tr>
                 <td><?php echo $alumno['id_user_alumno'] ?></td>
+                <td><?php echo $alumno['code'] ?></td>
+                
                 <td><?php  echo $alumno['last_name'] ?> <?php  echo $alumno['name'] ?></td>
                 <td><a href="/<?php echo strtolower($_SESSION['user']['type_us']) ?>/alumno/<?php echo $alumno['id_alumno_control'] ?>/">ir a notas</a></td>
                 <td>

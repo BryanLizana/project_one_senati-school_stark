@@ -18,12 +18,12 @@ class AlumnoAsistencias
     {
     }
 
-    //la asistencia se hace el mismodía no se puede postergar o adelantar
+    //la asistencia se hace el mismo día, no se puede postergar o adelantar
     public function save_asistencia()
     {
        global $db_class;
     //    $this->fecha = date('Y-m-d', strtotime(date('Y-m-d') . ' +6 day'));         
-       $this->fecha = date('Y-m-d');               
+       $this->fecha = date('Y-m-d');              
              
        if (is_numeric( $this->id_alumno_control) && $this->id_alumno_control != '0') {
            $data = array(':id_alumno_control' => $this->id_alumno_control, ':fecha' => $this->fecha,':asistencia' => $this->asistencia);
@@ -32,6 +32,7 @@ class AlumnoAsistencias
        }
     }
 
+    ///al volver a guardar la asistencia hay que eliminar la anterior 
     public function pre_asistencia_update()
     {
       global $db_class;
@@ -43,6 +44,7 @@ class AlumnoAsistencias
       $db_class->query($sql,$data);
     }
 
+    // lista a los días de asistencia de un alumno en específico, segpun sus id de control de un alumno
     public function list_alumno_asistencia()
     {
          global $db_class;  
@@ -53,6 +55,7 @@ class AlumnoAsistencias
         return $r;
     }
 
+//lista a la  asistencia de un alumno por un rango de fechas
     public function list_alumno_control_asistencia()
     {
          global $db_class;  

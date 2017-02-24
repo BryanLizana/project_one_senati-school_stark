@@ -14,11 +14,13 @@ class Alumnos extends Users
        
     }
 
+
+    //lista a los alumno y le añade su bloque correspondiente
     public function list_alumno()
     {   
         global $db_class;
         $this->type_us = "ALUMNO";
-        $r_users = self::list_user();
+        $r_users = self::list_user();///reutiliza la lista de la classe Users
         $i = 0;
         $r = null;
         foreach ($r_users as  $r_user) {
@@ -35,6 +37,7 @@ class Alumnos extends Users
            $r_users[$i]['id_bloque'] = $bloque['id_bloque'];
 
            if ($r_users[$i]['status'] == 'ACTIVO') {
+               ///alumnos activos solamente
               $r[] = $r_users[$i];
            }
            $i++;
