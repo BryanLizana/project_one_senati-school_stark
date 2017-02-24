@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
@@ -295,6 +295,7 @@ INSERT INTO `menu` (`id_menu`, `code_menu`, `type_us`, `name`) VALUES
 (8, 'generate', 'ADMIN', 'Generar Control'),
 (9, 'detail', 'DOCENTE', 'Detalle'),
 (10, 'list-bloques', 'DOCENTE', 'List Bloques');
+
 
 -- --------------------------------------------------------
 
