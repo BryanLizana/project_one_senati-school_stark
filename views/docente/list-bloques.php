@@ -3,7 +3,7 @@
 <?php 
 $bloque_curso_docente =  new BloqueCursoDocente();
 $bloque_curso_docente->id_user_docente = $_SESSION['user']['ID'];
-$data_bloques = $bloque_curso_docente->list_bloques_by_docente();
+$data_bloques = $bloque_curso_docente->list_bloques_by_docente();//trae lista de bloques del docente
  ?>
 <div class="main">
     <h3>Lista de bloques asignados:</h3>

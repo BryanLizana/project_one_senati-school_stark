@@ -3,7 +3,7 @@
 $bloque_curso_docente =  new BloqueCursoDocente();
 $bloque_curso_docente->id_user_docente = $_SESSION['user']['ID'];
 $bloque_curso_docente->id_bloque = $_GET['id'];
-$data_cursos = $bloque_curso_docente->list_curso_by_bloque_docente();
+$data_cursos = $bloque_curso_docente->list_curso_by_bloque_docente(); //trae un array 
  ?>
 <div class="main">
     <h3>Lista de curso que tiene en este bloque:</h3>

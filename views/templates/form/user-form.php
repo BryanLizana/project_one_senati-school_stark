@@ -1,4 +1,5 @@
        <?php error_reporting(0); ?>
+       <?php //template estandar de para rellenar datos de un usuario ?>
         <div class="pure-control-group">
             <label for="id">Usuario ID </label>
             <input id="id" name="id_user_text" name="id_user"  type="text" disabled placeholder="ID" value="<?php echo($data['id_user']) ?>" >

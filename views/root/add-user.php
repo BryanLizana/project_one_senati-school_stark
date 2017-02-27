@@ -1,6 +1,7 @@
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = new Users();
+        //add params
         $user->id_user =  $_POST['id_user'];        
         $user->name =  $_POST['name'];
         $user->last_name =  $_POST['last_name'];
@@ -11,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->password =  $_POST['password'];
         $user->type_us =  $_POST['type_us'];
 
+
+        ///añadir nuevo usuario al sistema
          $r = $user->save_user();     
         if (!empty($r)) {
             if (is_numeric($r)) {

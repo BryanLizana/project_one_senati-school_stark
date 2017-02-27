@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user =  new Users();
         $user->id_user = $_POST['id_user'];
         $user->delete_user();
-        header('location:/root/detail/');
+        header('location:/root/detail/');//redireccionar a la lista de usuarios una vez eliminado el que se ha solicitado
     }
 }
  ?>

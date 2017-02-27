@@ -1,4 +1,5 @@
 <?php 
+//pa´gina de pruebas, solo lo tiene el usuario ROOT
 
 // $validate =  new Validate();
 // $validate->table = "users";
