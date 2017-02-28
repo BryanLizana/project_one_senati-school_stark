@@ -30,6 +30,7 @@ class Users
         global $db;
         if (!empty( $this->code)  && !empty( $this->password)) {
             $prepare =    $db->prepare("select * from users where code = :code and password=:password and status = 'ACTIVO'");
+            //ejecutar login 
             $prepare->execute(array(':code' => $this->code,':password'=> $this->password ));
             $data_user =   $prepare->fetch();
 
@@ -57,7 +58,7 @@ class Users
 
     public function save_user()
     {
-            global $db_class;
+            global $db_class; //variable global de conexión DB
          
                
                 if (true ) {

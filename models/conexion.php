@@ -12,6 +12,7 @@ class DB
     function __construct()
     {
         try {
+            //iniciar la conexión
          $this->db = new PDO('mysql:host='.$this->host.';dbname='.$this->name_database.'', $this->user_server, $this->pass_server);
          
         } catch (PDOException $e) {
@@ -25,22 +26,27 @@ class DB
         }
     }
 
+
+    //devolver la conexión realizada
     public function db()
     {
             return $this->db;
     }
 
+    //función que se usa para realizar las consultas
     public function query($sql_prepare,$array_data = null,$type = "ALL")
     {
         //try catch
         //**¡¡
 
-       
+        //preparar el script
         $prepare =    $this->db->prepare($sql_prepare);
         $prepare->execute($array_data);
         //Dependiendo del tipo de la consulta devolver un tipo de resultado en específico
         //ALL : Lista completa o datos de un solo usuario
         //INSERT|UPDATE El Id que se ha ingresado o actualizado
+
+        //elegir un tipo de respuesta
        switch ($type) {
            case 'ALL':
                 $datalist =   $prepare->fetchAll();
@@ -53,11 +59,12 @@ class DB
               $datalist =   $prepare->fetch();
                break;
        }
+       //retornar resultado
         return $datalist;
     }
 }
 
-
+//Realizar auto llamado 
 $db_class = new DB();
 $db = $db_class->db();
 

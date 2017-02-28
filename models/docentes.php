@@ -13,13 +13,15 @@ class Docentes extends Users
        
     }
 
+    //listado de un docente
     public function list_docente()
     {   
         global $db_class;
         $this->type_us = "DOCENTE";
-        $r_users = self::list_user();
+        $r_users = self::list_user(); //llamar a una función heredada
         $i = 0;
         $r = null;
+        //listar solo docentes activos
         foreach ($r_users as  $r_user) {
 
            if ($r_users[$i]['status'] == 'ACTIVO') {
@@ -35,14 +37,14 @@ class Docentes extends Users
             $r_select = $db_class->query($sql,$data);
             if (is_array($r_select)) {
                 foreach ($r_select as  $value) {
-                    $array_cursos[] = $value['id_curso'];
-                    $array_bloques[] = $value['id_bloque'];
+                    $array_cursos[] = $value['id_curso']; //curos que enseña
+                    $array_bloques[] = $value['id_bloque']; //bloques donde los enseña
                     
                 }
-              $array_cursos =  array_unique($array_cursos);
-              $array_bloques =  array_unique($array_bloques);
-              $r[0]['array_cursos'] = $array_cursos;
-              $r[0]['array_bloques'] = $array_bloques;
+              $array_cursos =  array_unique($array_cursos);//eliminar duplicados
+              $array_bloques =  array_unique($array_bloques); //eliminar duplicados
+              $r[0]['array_cursos'] = $array_cursos; //asiganar cursos
+              $r[0]['array_bloques'] = $array_bloques;//asignar bloques
               
             }
         }

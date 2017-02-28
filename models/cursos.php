@@ -15,6 +15,7 @@ class Cursos
         # code...
     }
 
+    ///Guarda un curso, validando su nombre ya que es único
     public function save_curso()
     {
                 global $db_class;
@@ -32,6 +33,7 @@ class Cursos
                     $validate->id_table_field = "id_curso" ;                     
                     $r_validate =  $validate->validate();
                     if ( $r_validate !== 1) {
+                        ///devolver errores de la validación
                         $r = $r_validate;
                     }else {
 
@@ -49,13 +51,17 @@ class Cursos
                             }
                     }
                     
-              
-
+                    //eliminar variables que no se usarán 
+                    unset($sql);
+                    unset($data);
+                    unset($validate);
+                    
                     // Result:  id_curso insert or edit | null 
                     return $r;
                 
     }
 
+    ///la eliminación de curso se hace por completo
     public function delete_curso()
     {
            //    delete
@@ -63,15 +69,16 @@ class Cursos
            $data = array(':id_curso' => $this->id_curso );
            $sql = "DELETE FROM  cursos  where id_curso = :id_curso";
            $r = $db_class->query($sql,$data);
-           
+            unset($sql);
+            unset($data);
             return $r;
         
     }
 
+    //listado de cursos ya sea de uno solo o de todos
     public function list_curso()
     {
-            global $db_class;
-
+            global $db_class; //variable para hacer las consultas
 
             if (empty($this->id_curso) ) {
 

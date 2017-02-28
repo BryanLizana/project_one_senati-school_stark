@@ -94,7 +94,7 @@ class Bloques
                 $r =  $db_class->query($sql,$data);
                 
             }
-
+            //eliminar variables no utilizadas
             unset($sql);
             unset($data);
             // Result:  list  | null 
@@ -113,6 +113,7 @@ class Bloques
         return $r;
     }
 
+    //actualizar cantes según ingresen alumnos
     public function update_vacante()
     {
       global $db_class;
@@ -121,6 +122,7 @@ class Bloques
       $r = $db_class->query($sql,$data,"UPDATE");
     }
 
+    //eliminar vacante si se elimina a un alumno
     public function delete_vacante()
     {
       global $db_class;
