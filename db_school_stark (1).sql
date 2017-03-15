@@ -1,4 +1,4 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
@@ -295,7 +295,6 @@ INSERT INTO `menu` (`id_menu`, `code_menu`, `type_us`, `name`) VALUES
 (8, 'generate', 'ADMIN', 'Generar Control'),
 (9, 'detail', 'DOCENTE', 'Detalle'),
 (10, 'list-bloques', 'DOCENTE', 'List Bloques');
-(11, 'detail', 'ALUMNO', 'Detalle');
 
 
 -- --------------------------------------------------------
@@ -444,7 +443,9 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
