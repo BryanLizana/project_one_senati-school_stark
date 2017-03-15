@@ -5,9 +5,9 @@
 class DB
 {
     private $host = "localhost";
-    private $user_server = "root";
-    private $pass_server = "";
-    private $name_database = "db_school_stark";
+    private $user_server = "admin_stark";
+    private $pass_server = "123456";
+    private $name_database = "admin_db_school_stark";
     private $db;
     function __construct()
     {

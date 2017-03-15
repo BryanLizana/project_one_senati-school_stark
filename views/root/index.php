@@ -1,3 +1,10 @@
+<?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+?>
+
 <?php $page_this = "ROOT"; ?>
 <?php require_once('../../controllers/defines.php') ; // se define en cada modulo ?>
 <?php  require_once(ROOT.'/models/users.php');  //objecto con el cual trabajará ?>
